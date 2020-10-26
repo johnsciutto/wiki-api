@@ -84,6 +84,11 @@ app.route('/articles/:articleTitle')
     );
   })
 
-  .delete();
+  .delete((req, res) => {
+    Article.deleteOne({ title: req.params.articleTitle }, (err) => {
+      if (err) res.send(err);
+      else res.send('Article deleted successfully!');
+    });
+  });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
