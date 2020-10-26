@@ -44,4 +44,11 @@ app.post('/articles', (req, res) => {
   });
 });
 
+app.delete('/articles', (req, res) => {
+  Article.deleteMany((err) => {
+    if (err) res.send(err);
+    else res.send('All articles successfully deleted from database');
+  });
+});
+
 app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
