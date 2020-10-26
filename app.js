@@ -52,4 +52,29 @@ app.route('/articles')
     });
   });
 
+app.route('/articles/:articleTitle')
+  .get((req, res) => {
+    Article.findOne({ title: req.params.articleTitle }, (err, article) => {
+      if (err) res.send(err);
+      else res.send(article);
+    });
+  })
+
+  .put((req, res) => {
+    const { title, content } = req.body;
+    Article.update(
+      { title: req.params.articleTitle }, // conditions
+      { title, content }, // updates
+      { overwrite: true },
+      (err) => {
+        if (err) res.send(err);
+        else res.send('Article updated successfully!');
+      },
+    );
+  })
+
+  .patch()
+
+  .delete();
+
 app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
