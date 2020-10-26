@@ -28,8 +28,20 @@ const Article = mongoose.model('Article', articleSchema);
 
 // Routes ======================================================================
 
-app.get('/', (req, res) => {
+app.get('/articles', (req, res) => {
+  Article.find((err, foundArticles) => {
+    if (!err) res.send(foundArticles);
+    if (err) res.send(err);
+  });
+});
 
+app.post('/articles', (req, res) => {
+  const { title, content } = req.body;
+  const newArticle = new Article({ title, content });
+  newArticle.save((err) => {
+    if (err) res.send(err);
+    else res.send('Successfully added article to database');
+  });
 });
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
