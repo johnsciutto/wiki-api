@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const ejs = require('ejs');
 
 const DB_ADDRESS = 'mongodb://localhost:27017/wikiDB';
 const PORT = process.env.PORT || 3000;
