@@ -17,7 +17,7 @@ const articleSchema = new mongoose.Schema({
 const Article = mongoose.model('Article', articleSchema);
 
 app.get('/', (req, res) => {
-  res.send('Article was added to the DB, check it!');
+
 });
 
 app.listen(3000, () => console.log('Listening on port 3000...'));
