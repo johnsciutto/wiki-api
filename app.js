@@ -29,14 +29,14 @@ const Article = mongoose.model('Article', articleSchema);
 // Routes ======================================================================
 
 app.route('/articles')
-  .get('/articles', (req, res) => {
+  .get((req, res) => {
     Article.find((err, foundArticles) => {
       if (!err) res.send(foundArticles);
       if (err) res.send(err);
     });
   })
 
-  .post('/articles', (req, res) => {
+  .post((req, res) => {
     const { title, content } = req.body;
     const newArticle = new Article({ title, content });
     newArticle.save((err) => {
@@ -45,7 +45,7 @@ app.route('/articles')
     });
   })
 
-  .delete('/articles', (req, res) => {
+  .delete((req, res) => {
     Article.deleteMany((err) => {
       if (err) res.send(err);
       else res.send('All articles successfully deleted from database');
