@@ -1,8 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const DB_ADDRESS = 'mongodb://localhost:27017/wikiDB';
-const PORT = process.env.PORT || 3000;
+const {
+  DB_ADDRESS,
+  PORT,
+} = process.env;
 
 // Express Configuration =======================================================
 
@@ -62,8 +64,8 @@ app.route('/articles/:articleTitle')
   .put((req, res) => {
     const { title, content } = req.body;
     Article.update(
-      { title: req.params.articleTitle }, // conditions
-      { title, content }, // updates
+      { title: req.params.articleTitle },
+      { title, content },
       { overwrite: true },
       (err) => {
         if (err) res.send(err);
